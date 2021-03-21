@@ -4,6 +4,7 @@
 
 设置快捷键：
 
-在文件夹窗口上右键
+在文件夹窗口上右键->qttabbar options
 
 ![image-20210321002109398](https://raw.githubusercontent.com/copbint/picture_bed/main/2021/image-20210321002109398.png)
+
