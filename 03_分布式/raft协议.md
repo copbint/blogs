@@ -3,7 +3,7 @@
 [etcd技术内幕](https://github.com/copbint/blogs/blob/main/99_books/books.md#etcd%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95)
 
 [分布式一致性算法-Paxos、Raft、ZAB、Gossip](https://zhuanlan.zhihu.com/p/130332285)  
-[寻找一种易于理解的一致性算法（扩展版）](https://github.com/maemual/raft-zh_cn/blob/master/raft-zh_cn.md)
+[寻找一种易于理解的一致性算法（扩展版）](https://github.com/maemual/raft-zh_cn/blob/master/raft-zh_cn.md)  
 [raft算法详解](https://zhuanlan.zhihu.com/p/32052223)
 
 
