@@ -1,0 +1,26 @@
+#!/usr/bin/expect
+
+set hostname [lindex $argv 0]
+set username [lindex $argv 1]
+set password [lindex $argv 2]
+
+set local_file [lindex $argv 3]
+set remote_dir [lindex $argv 4]
+
+spawn scp -r $local_file $username@$hostname:$remote_dir
+expect {
+  "yes/no" {
+     send "yes\n"
+     expect "assword" {
+        send "$password\n"
+     }
+  }
+  "assword" {
+    send "$password\n"
+ }
+}
+
+expect 100%
+
+##无此sleep语句有时会拷贝失败
+sleep 0.1
