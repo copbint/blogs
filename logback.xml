@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property name="LOG_DIR" value="/opt/xxx/logs"/>
+    <appender name="XXX" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <!--        理解这个filter的作用和ROOT/logger中的level是一个与的关系，所以引处并不需要-->
+        <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+        <!--            <level>info</level>-->
+        <!--        </filter>-->
+        <file>
+            ${LOG_DIR}/xxx.log
+        </file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_DIR}/xxx.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>16MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="XXX"/>
+    </root>
+
+
+    <appender name="XXX_ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <file>
+            ${LOG_DIR}/xxx_access.log   <!-- 日志路径保持与appctl.sh里create dir log路径相同           -->
+        </file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_DIR}/xxx_access.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--上面的FileNamePattern的最小单位是天，所以maxHistory表示最多保存日志天数，并非文件个数-->
+            <maxHistory>60</maxHistory>
+            <maxFileSize>16MB</maxFileSize>
+            <totalSizeCap>400MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="xxx.AccessLogFilter" additivity="false" level="INFO">
+        <appender-ref ref="XXX_ACCESS"/>
+    </logger>
+
+</configuration>
